@@ -35,7 +35,7 @@ simpleHeatFoam/
 │       ├── alphaEqn.H
 │       └── Make/
 ├── tutorials/
-│   └── caseName/
+│   └── tube/
 │       ├── 0/
 │       ├── constant/
 │       └── system/
