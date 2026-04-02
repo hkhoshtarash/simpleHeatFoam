@@ -56,7 +56,33 @@ CITATION.cff
 .gitignore
 LICENSE
 ```
+## Governing model
 
+The solver follows the pore-scale framework described in the paper and is based on a finite-volume implementation in OpenFOAM. The paper states that the continuity, momentum, nanoparticle distribution, and energy equations are solved using OpenFOAM, with SIMPLE for pressure–velocity coupling.
+
+## Required fields and properties
+
+### Fields
+A typical case should provide at least these fields in the `0/` directory:
+- `U`
+- `p`
+- `T`
+- `alpha`
+
+### `constant/transportProperties`
+The solver reads the following properties:
+- `rho_f`
+- `mu_f`
+- `c_f`
+- `k_f`
+- `rho_p`
+- `c_p`
+- `k_p`
+- `dp`
+- `alphaRef`
+- `k_Boltzman`
+- `lambda`
+- `alphaEqActivation`
 ---
 
 ## ⚙️ Installation
