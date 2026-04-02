@@ -1,0 +1,83 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  6
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    location    "0";
+    object      alpha;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 0 0 0 0 0 0];
+
+internalField   uniform 0.02;
+
+boundaryField
+{
+    inlet
+    {
+        type           fixedValue;
+        value          uniform 0.02;
+    }
+
+    outlet
+    {
+        type            zeroGradient;
+       
+    }
+
+    tube
+        {
+        type            groovyBC;
+        refValue        uniform 0;
+        refGradient     uniform 0;
+        valueFraction   uniform 0;
+        value           uniform 0;
+        valueExpression "0";
+        gradientExpression "JJ";
+        fractionExpression "0";
+        evaluateDuringConstruction 0;
+        variables       
+9
+(
+"mu_ff=890e-6;"
+"rho_ff=997;"
+"k_ff=0.59;"
+"k_pp=40;"
+"DTT=0.26*(k_ff/(2.0*k_ff+k_pp))*(mu_ff/rho_ff)*(alpha/T);"
+"kk_Boltzman=1.38064e-23;"
+"ddp=33e-9;"
+"Dbb=kk_Boltzman*T/(3.0*3.14*mu_ff*ddp);"
+"JJ=-(DTT/Dbb)*snGrad(T);"
+)
+;
+        timelines       (
+);
+        lookuptables    (
+);
+        lookuptables2D  (
+);
+    }
+    front
+    {
+        type            wedge;     
+    }
+    back
+    {
+        type            wedge;  
+    }
+    axis
+    {
+        type            empty;
+    }
+}
+
+
+// ************************************************************************* //
