@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+__MACOSX/
+
+# OpenFOAM / wmake build artifacts
+Make/*/options
+Make/*/sourceFiles
+Make/*/variables
+Make/*/*.dep
+Make/*/*.o
+Make/*/*.so
+linux*
+platforms/
+
+# Solver binaries and logs
+log*
+*.log
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~

@@ -1,0 +1,31 @@
+cff-version: 1.2.0
+message: "If you use this solver, please cite the associated paper."
+title: "simpleHeatFoam"
+type: software
+authors:
+  - family-names: "Khoshtarash"
+    given-names: "Hamidreza"
+  - family-names: "Siavashi"
+    given-names: "Majid"
+  - family-names: "Ramezanpour"
+    given-names: "Milad"
+  - family-names: "Blunt"
+    given-names: "Martin J."
+repository-code: "https://github.com/hkhoshtarash/simpleHeatFoam"
+license: "GPL-3.0-only"
+preferred-citation:
+  type: article
+  authors:
+    - family-names: "Khoshtarash"
+      given-names: "Hamidreza"
+    - family-names: "Siavashi"
+      given-names: "Majid"
+    - family-names: "Ramezanpour"
+      given-names: "Milad"
+    - family-names: "Blunt"
+      given-names: "Martin J."
+  title: "Pore-scale analysis of two-phase nanofluid flow and heat transfer in open-cell metal foams considering Brownian motion"
+  journal: "Applied Thermal Engineering"
+  year: 2023
+  volume: 221
+  doi: "10.1016/j.applthermaleng.2022.119847"
