@@ -27,8 +27,6 @@ Suggested layout:
 
 ```text
 simpleHeatFoam/
-├── solver/
-│   └── simpleHeatFoam/
 │       ├── simpleHeatFoam.C
 │       ├── createFields.H
 │       ├── UEqn.H
