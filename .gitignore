@@ -1,7 +1,3 @@
-# macOS
-.DS_Store
-__MACOSX/
-
 # OpenFOAM / wmake build artifacts
 Make/*/options
 Make/*/sourceFiles
