@@ -8,9 +8,11 @@ Make/*/*.so
 linux*
 platforms/
 
+
 # Solver binaries and logs
 log*
 *.log
+
 
 # Editor / IDE
 .vscode/
