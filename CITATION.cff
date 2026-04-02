@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this solver, please cite the associated paper."
 title: "simpleHeatFoam"
-type: software
+type: software - OpenFoamV7
 authors:
   - family-names: "Khoshtarash"
     given-names: "Hamidreza"
