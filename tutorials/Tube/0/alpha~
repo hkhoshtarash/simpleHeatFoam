@@ -1,0 +1,104 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      alpha;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 0 0 0 0 0 0];
+
+internalField   uniform 0.005; 
+
+boundaryField
+{
+    top
+    {
+        type            zeroGradient;
+    }
+    bottom
+    {
+        type            zeroGradient;
+    }
+    frontAndBack
+    {
+        type            empty;
+    }
+    rightCold
+    {
+        type            groovyBC;
+        refValue        uniform 0;
+        refGradient     uniform 0;
+        valueFraction   uniform 0;
+        value           uniform 0;
+        valueExpression "0";
+        gradientExpression "JJ";
+        fractionExpression "0";
+        evaluateDuringConstruction 0;
+        variables       
+9
+(
+"mu_ff=9.548e-4;"
+"rho_ff=997.8;"
+"k_ff=0.613;"
+"k_pcmm=0.1825;"
+"DTT=0.26*(k_ff/(2.0*k_ff+k_pcmm))*(mu_ff/rho_ff)*(alpha/T);"
+"kk_Boltzman=1.38064e-23;"
+"ddp=20e-9;"
+"Dbb=kk_Boltzman*T/(3.0*3.14*mu_ff*ddp);"
+"JJ=-(DTT/Dbb)*snGrad(T);"
+)
+;
+        timelines       (
+);
+        lookuptables    (
+);
+        lookuptables2D  (
+);
+    }
+
+    leftHot
+    {
+        //type            zeroGradient;
+        type            groovyBC;
+        refValue        uniform 0;
+        refGradient     uniform 0;
+        valueFraction   uniform 0;
+        value           uniform 0; 
+        valueExpression "0";
+        gradientExpression "JJ";
+        fractionExpression "0";
+        evaluateDuringConstruction 0;
+        variables       
+9
+(
+"mu_ff=9.548e-4;"
+"rho_ff=997.8;"
+"k_ff=0.613;"
+"k_pcmm=0.1825;"
+"DTT=0.26*(k_ff/(2.0*k_ff+k_pcmm))*(mu_ff/rho_ff)*(alpha/T);"
+"kk_Boltzman=1.38064e-23;"
+"ddp=20e-9;"
+"Dbb=kk_Boltzman*T/(3.0*3.14*mu_ff*ddp);"
+"JJ=-(DTT/Dbb)*snGrad(T);"
+)
+;
+        timelines       (
+);
+        lookuptables    (
+);
+        lookuptables2D  (
+);
+    }
+}
+
+
+// ************************************************************************* //

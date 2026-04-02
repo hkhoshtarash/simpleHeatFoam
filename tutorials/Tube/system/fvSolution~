@@ -1,0 +1,116 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+solvers
+{
+    p
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-07;
+        relTol          0;
+    }
+
+    pB
+    {
+        $p;
+        tolerance       1e-05;
+        relTol          0;
+    }
+
+    "(U|k|epsilon|omega|f|v2|B)"
+    {
+        solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-07;
+        relTol          0;
+    }
+    p_rgh
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-07;
+        relTol          0.01;
+    }
+    T
+    {
+        solver          PBiCG;
+        preconditioner  DILU;
+        tolerance       1e-08;
+        relTol          0.1;
+    }
+
+    alpha
+    {
+        solver          PBiCG;
+        preconditioner  DILU;
+        tolerance       1e-07;
+ //       relTol          0.1;
+        relTol          0.5;
+    }
+}
+SIMPLE
+{
+    nCorrectors     1;
+    nNonOrthogonalCorrectors 2;
+    pRefCell        0;
+    pRefValue       0;
+
+    residualControl
+    {
+        p_rgh           1e-6;
+        U               1e-4;
+//        T               1e-9;
+//       alpha            1e-9;
+        T               1e-7;
+//       alpha            1e-4;
+       alpha            1e-5;
+ //       "(k|epsilon|omega)" 1e-5;
+        "(k|epsilon|v2|f|omega)" 1e-4;
+
+    }
+}
+
+relaxationFactors
+{
+    fields
+    {
+        p_rgh           0.5;
+    }
+    equations
+    {
+        U               0.5;
+        T               0.5;
+       alpha            0.1;
+        "(k|epsilon|v2|f|R)" 0.7;
+    }
+}
+
+/////////////for piso alghorithm
+PISO
+{
+    nCorrectors     3;
+    nNonOrthogonalCorrectors 0;
+}
+/////for mhd
+BPISO
+{
+    nCorrectors     3;
+}
+
+
+// ************************************************************************* //
